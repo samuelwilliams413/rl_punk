@@ -16,54 +16,15 @@ Game.PlayerTemplate = {
 // Create our central entity repository
 Game.EntityRepository = new Game.Repository('entities', Game.Entity);
 
-Game.EntityRepository.define('lobsterknight', {
-    name: 'lobsterknight',
-    character: 'L',
+Game.EntityRepository.define('Sarariman', {
+    name: 'Sarariman',
+    character: 'S',
     foreground: 'red',
     maxHp: 3,
     defenseValue: 1,
     sightRadius: 5,
     tasks: ['hunt', 'wander'],
-    description: 'Hard shell blocks 1 point of damage.',
-    mixins: [Game.EntityMixins.TaskActor, Game.EntityMixins.Sight,
-             Game.EntityMixins.Attacker, Game.EntityMixins.Destructible,
-             Game.EntityMixins.CorpseDropper]
-});
-
-Game.EntityRepository.define('hatchling', {
-    name: 'hatchling',
-    character: 'l',
-    foreground: 'red',
-    maxHp: 3,
-    sightRadius: 5,
-    tasks: ['hunt', 'wander'],
-    description: 'Young and boring.',
-    mixins: [Game.EntityMixins.TaskActor, Game.EntityMixins.Sight,
-             Game.EntityMixins.Attacker, Game.EntityMixins.Destructible,
-             Game.EntityMixins.CorpseDropper]
-});
-
-Game.EntityRepository.define('mercenary crabfolk x', {
-    name: 'crabfolk merc',
-    character: 'u',
-    foreground: 'cyan',
-    maxHp: 3,
-    sightRadius: 5,
-    tasks: ['huntX', 'wanderX'],
-    description: 'Can only walk sideways, but can still attack in 4 directions.',
-    mixins: [Game.EntityMixins.TaskActor, Game.EntityMixins.Sight,
-             Game.EntityMixins.Attacker, Game.EntityMixins.Destructible,
-             Game.EntityMixins.CorpseDropper]
-});
-
-Game.EntityRepository.define('mercenary crabfolk y', {
-    name: 'crabfolk merc',
-    character: 'c',
-    foreground: 'cyan',
-    maxHp: 3,
-    sightRadius: 5,
-    tasks: ['huntY', 'wanderY'],
-    description: 'Can only walk sideways, but can still attack in 4 directions.',
+    description: 'Suit blocks 1 point of damage.',
     mixins: [Game.EntityMixins.TaskActor, Game.EntityMixins.Sight,
              Game.EntityMixins.Attacker, Game.EntityMixins.Destructible,
              Game.EntityMixins.CorpseDropper]

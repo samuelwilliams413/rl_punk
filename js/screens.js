@@ -7,15 +7,27 @@ Game.Screen.startScreen = {
     render: function(display) {
         // Render our prompt to the screen
         var y = 0;
-        display.drawText(1, y++, "The seaside city of Port Yendor has prospered for as long as you can");
-        display.drawText(1, y++, "remember, thanks to the powerful %c{#f0f}Jewel of Zot%c{#ccc}.");
         y++;
-        display.drawText(1, y++, "But now the %c{red}lobsterfolk%c{#ccc} have stolen the jewel and are using it");
-        display.drawText(1, y++, "for dark purposes!");
+        display.drawText(1, y++, "The  sky  above the port was the color of television, tuned to a dead");
+        display.drawText(1, y++, "channel.");
         y++;
-        display.drawText(1, y++, "With the help of Levi, god of tides and currents, you must infiltrate");
-        display.drawText(1, y++, "the %c{#6c9}Sunken Citadel%c{#ccc} and retrieve it from the 7th floor!");
+        display.drawText(1, y++, "Behind  the  port  lay  the city, factory domes dominated by the vast");
+        display.drawText(1, y++, "cubes  of  corporate  arcologies.  Port  and  city  were divided by a");
+        display.drawText(1, y++, "narrow  borderland  of  older streets, an area with no official name.");
+        display.drawText(1, y++, "Night  City, with Ninsei its heart.");
         y++;
+        display.drawText(1, y++, "Night  City  was  like  a  deranged  experiment  in social Darwinism,");
+        display.drawText(1, y++, "designed  by a bored researcher who kept one thumb permanently on the");
+        display.drawText(1, y++, "fast-forward  button. Stop hustling and you sank without a trace, but");
+        display.drawText(1, y++, "move  a  little  too  swiftly  and  youd  break  the  fragile surface");
+        display.drawText(1, y++, "tension  of the black market; either way, you were gone, with nothing");
+        display.drawText(1, y++, "left  of  you  but  some  vague  memory in the mind of a fixture like");
+        display.drawText(1, y++, "Ratz,  though  heart or lungs or kidneys might survive in the service");
+        display.drawText(1, y++, "of some stranger with New Yen for the clinic tanks.");
+        y++;
+        display.drawText(1, y++, "Biz  here  was  a  constant  subliminal  hum,  and death the accepted");
+        display.drawText(1, y++, "punishment  for laziness, carelessness, lack of grace, the failure to");
+        display.drawText(1, y++, "heed the demands of an intricate protocol...");
         y++;
         y = display.getOptions().height - 2;
         display.drawText(1, y++, "%c{yellow}Press any key to start!");
@@ -128,7 +140,7 @@ Game.Screen.playScreen = {
             display.drawText(screenWidth + 1, y, text);
         }
 
-        var locationLine = headColors + 'Sunken Citadel'
+        var locationLine = headColors + 'Chiba City'
         var levelLine = statColors + 'Level: ' + this._level;
         var hpLine = statColors + 'HP: ' +
             healthColors + Array(player.getHp() + 1).join('+') +
@@ -432,12 +444,13 @@ Game.Screen.loseScreen = {
     render: function(display) {
         var y = 1;
         var messageColor = "%c{#ccc}"
-        display.drawText(1, y++, messageColor + "You have fallen in the %c{#6c9}Sunken Citadel%c{#ccc}.")
         y++;
-        display.drawText(1, y++, messageColor + "Will another hero take your place?")
+        display.drawText(1, y++, messageColor + "You have %c{red}died%c{#ccc}.")
         y++;
-        display.drawText(1, y++, messageColor + "Or will Port Yendor be consumed by the rising tides when")
-        display.drawText(1, y++, messageColor + "the %c{red}lobsterfolk%c{#ccc} master the %c{#f0f}Jewel of Zot%c{#ccc}'s power?")
+        display.drawText(1, y++, messageColor + "Don't worry, there will always be someone to take your place.")
+        y++;
+        display.drawText(1, y++, messageColor + "%c{#888}Things aren't different. Things are things.%c{#ccc}")
+        y++;
         y = display.getOptions().height - 2;
         text = '[ Press any key to try again ]';
         display.drawText((Game.getScreenWidth() + 20) / 2 - text.length / 2, y++, '%c{yellow}' +text);
