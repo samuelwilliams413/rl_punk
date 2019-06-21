@@ -30,16 +30,16 @@ Game.EntityRepository.define('Sarariman', {
              Game.EntityMixins.CorpseDropper]
 });
 
-Game.EntityRepository.define('guard snail', {
-    name: 'guard snail',
-    character: 's',
+Game.EntityRepository.define('mutant', {
+    name: 'mutant',
+    character: 'm',
     foreground: 'green',
     speed: 500,
-    maxHp: 3,
-    defenseValue: 1,
+    maxHp: 2,
+    defenseValue: 0,
     sightRadius: 5,
     tasks: ['slimeHunt', 'slime'],
-    description: 'Hard shell. Leaves toxic slime trails. Slow.',
+    description: 'Leaves toxic slime trails. Slow.',
     mixins: [Game.EntityMixins.TaskActor, Game.EntityMixins.Sight,
              Game.EntityMixins.Attacker, Game.EntityMixins.Destructible,
              Game.EntityMixins.CorpseDropper]

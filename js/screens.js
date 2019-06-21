@@ -16,15 +16,6 @@ Game.Screen.startScreen = {
         display.drawText(1, y++, "narrow  borderland  of  older streets, an area with no official name.");
         display.drawText(1, y++, "Night  City, with Ninsei its heart.");
         y++;
-        display.drawText(1, y++, "Night  City  was  like  a  deranged  experiment  in social Darwinism,");
-        display.drawText(1, y++, "designed  by a bored researcher who kept one thumb permanently on the");
-        display.drawText(1, y++, "fast-forward  button. Stop hustling and you sank without a trace, but");
-        display.drawText(1, y++, "move  a  little  too  swiftly  and  youd  break  the  fragile surface");
-        display.drawText(1, y++, "tension  of the black market; either way, you were gone, with nothing");
-        display.drawText(1, y++, "left  of  you  but  some  vague  memory in the mind of a fixture like");
-        display.drawText(1, y++, "Ratz,  though  heart or lungs or kidneys might survive in the service");
-        display.drawText(1, y++, "of some stranger with New Yen for the clinic tanks.");
-        y++;
         display.drawText(1, y++, "Biz  here  was  a  constant  subliminal  hum,  and death the accepted");
         display.drawText(1, y++, "punishment  for laziness, carelessness, lack of grace, the failure to");
         display.drawText(1, y++, "heed the demands of an intricate protocol...");
@@ -54,7 +45,7 @@ Game.Screen.playScreen = {
     everyTurn: function() {
         if (this._player.getBuffTotal('speed') === 0) {
             this.ageTiles();
-        }        
+        }
     },
     exit: function() { console.log("Exited play screen."); },
     newLevel: function(level) {
@@ -103,11 +94,11 @@ Game.Screen.playScreen = {
         for (var i = 0; i < messages.length; i++) {
             // Draw each message, adding the number of lines
             messageY += display.drawText(
-                0, 
+                0,
                 messageY,
                 '%c{white}%b{black}' + messages[i]
             );
-        }    
+        }
     },
     ageTiles: function() {
         var screenWidth = Game.getScreenWidth();
@@ -123,7 +114,7 @@ Game.Screen.playScreen = {
                     map.setTile(x, y, tile.getNext());
                 }
             }
-        }      
+        }
     },
     renderStatus: function(display) {
         var player = this._player
@@ -176,7 +167,7 @@ Game.Screen.playScreen = {
         for (var j = 0; j < enemies.length; j++) {
             var enemy = enemies[j];
             drawStatus(s++, '%c{' + enemy.getForeground() + '}' + enemy.getChar() + ' ' + statColors + enemy.getName());
-            drawStatus(s++, statColors + 'HP: ' + 
+            drawStatus(s++, statColors + 'HP: ' +
                 healthColors + Array(enemy.getHp() + 1).join('+') +
                 grayColors + Array(enemy.getMaxHp() - enemy.getHp() + 1).join('-'));
         }
@@ -211,8 +202,8 @@ Game.Screen.playScreen = {
         var map = this._player.getMap();
         // Find all visible cells and update the object
         map.getFov().compute(
-            this._player.getX(), this._player.getY(), 
-            this._player.getSightRadius(), 
+            this._player.getX(), this._player.getY(),
+            this._player.getSightRadius(),
             function(x, y, radius, visibility) {
                 visibleCells[x + "," + y] = true;
                 // Mark cell as explored
@@ -250,7 +241,7 @@ Game.Screen.playScreen = {
                         }
                         foreground = '#255';
                     } else {
-                        // Since the tile was previously explored but is not 
+                        // Since the tile was previously explored but is not
                         // visible, we want to change the foreground color to
                         // dark gray.
                         if (character === ' ') {
@@ -263,8 +254,8 @@ Game.Screen.playScreen = {
                     display.draw(
                         x - topLeftX,
                         y - topLeftY,
-                        character, 
-                        foreground, 
+                        character,
+                        foreground,
                         background);
                 }
             }
@@ -303,27 +294,27 @@ Game.Screen.playScreen = {
             this._player.getMap().getEngine().unlock();
         } else if (inputType === 'keydown') {
             // Movement
-            if (inputData.keyCode === ROT.VK_LEFT || 
+            if (inputData.keyCode === ROT.VK_LEFT ||
                 inputData.keyCode === ROT.VK_H ||
                 inputData.keyCode === ROT.VK_NUMPAD4 ||
                 inputData.keyCode === ROT.VK_A) {
                 this.move(-1, 0, 0);
-            } else if (inputData.keyCode === ROT.VK_RIGHT || 
+            } else if (inputData.keyCode === ROT.VK_RIGHT ||
                        inputData.keyCode === ROT.VK_L ||
                        inputData.keyCode === ROT.VK_NUMPAD6 ||
                        inputData.keyCode === ROT.VK_D) {
                 this.move(1, 0, 0);
-            } else if (inputData.keyCode === ROT.VK_UP || 
+            } else if (inputData.keyCode === ROT.VK_UP ||
                        inputData.keyCode === ROT.VK_K ||
                        inputData.keyCode === ROT.VK_NUMPAD8 ||
                        inputData.keyCode === ROT.VK_W) {
                 this.move(0, -1, 0);
-            } else if (inputData.keyCode === ROT.VK_DOWN || 
+            } else if (inputData.keyCode === ROT.VK_DOWN ||
                        inputData.keyCode === ROT.VK_J ||
                        inputData.keyCode === ROT.VK_NUMPAD2 ||
                        inputData.keyCode === ROT.VK_S) {
                 this.move(0, 1, 0);
-            } else if (inputData.keyCode === ROT.VK_SPACE || 
+            } else if (inputData.keyCode === ROT.VK_SPACE ||
                        inputData.keyCode === ROT.VK_PERIOD) {
                 this.move(0, 0, 0);
             } else if (inputData.keyCode === ROT.VK_1) {
@@ -380,7 +371,7 @@ Game.Screen.playScreen = {
             }
             // Unlock the engine
             this._player.getMap().getEngine().unlock();
-        } 
+        }
     },
     move: function(dX, dY) {
         var newX = this._player.getX() + dX;
@@ -410,7 +401,7 @@ Game.Screen.playScreen = {
 Game.Screen.winScreen = {
     enter: function() {
         this._ignoredOne = false;
-        console.log("Entered win screen."); 
+        console.log("Entered win screen.");
     },
     exit: function() { console.log("Exited win screen."); },
     render: function(display) {
@@ -436,9 +427,9 @@ Game.Screen.winScreen = {
 
 // Define our winning screen
 Game.Screen.loseScreen = {
-    enter: function() { 
+    enter: function() {
         this._ignoredOne = false;
-        console.log("Entered lose screen."); 
+        console.log("Entered lose screen.");
     },
     exit: function() { console.log("Exited lose screen."); },
     render: function(display) {
@@ -449,7 +440,7 @@ Game.Screen.loseScreen = {
         y++;
         display.drawText(1, y++, messageColor + "Don't worry, there will always be someone to take your place.")
         y++;
-        display.drawText(1, y++, messageColor + "%c{#888}Things aren't different. Things are things.%c{#ccc}")
+        display.drawText(1, y++, messageColor + "%c{#444}Things aren't different. Things are things.%c{#ccc}")
         y++;
         y = display.getOptions().height - 2;
         text = '[ Press any key to try again ]';
@@ -491,8 +482,8 @@ Game.Screen.TargetBasedScreen.prototype.setup = function(player, startX, startY,
     // Cache the FOV
     var visibleCells = {};
     this._player.getMap().getFov().compute(
-        this._player.getX(), this._player.getY(), 
-        this._player.getSightRadius(), 
+        this._player.getX(), this._player.getY(),
+        this._player.getSightRadius(),
         function(x, y, radius, visibility) {
             visibleCells[x + "," + y] = true;
         });
@@ -510,34 +501,34 @@ Game.Screen.TargetBasedScreen.prototype.render = function(display) {
     for (var i = 0, l = points.length; i < l; i++) {
         display.drawText(points[i].x, points[i].y, '%c{#off}o');
         if (i === points.length - 1) {
-            display.drawText(points[i].x, points[i].y, '%c{#off}O');            
+            display.drawText(points[i].x, points[i].y, '%c{#off}O');
         }
     }
 
     // Render the caption at the bottom.
-    display.drawText(0, Game.getScreenHeight() - 1, 
+    display.drawText(0, Game.getScreenHeight() - 1,
         this._captionFunction(this._cursorX + this._offsetX, this._cursorY + this._offsetY));
 };
 
 Game.Screen.TargetBasedScreen.prototype.handleInput = function(inputType, inputData) {
     // Move the cursor
     if (inputType == 'keydown') {
-        if (inputData.keyCode === ROT.VK_LEFT || 
+        if (inputData.keyCode === ROT.VK_LEFT ||
             inputData.keyCode === ROT.VK_H ||
             inputData.keyCode === ROT.VK_NUMPAD4 ||
             inputData.keyCode === ROT.VK_A) {
             this.moveCursor(-1, 0);
-        } else if (inputData.keyCode === ROT.VK_RIGHT || 
+        } else if (inputData.keyCode === ROT.VK_RIGHT ||
                    inputData.keyCode === ROT.VK_L ||
                    inputData.keyCode === ROT.VK_NUMPAD6 ||
                    inputData.keyCode === ROT.VK_D) {
             this.moveCursor(1, 0);
-        } else if (inputData.keyCode === ROT.VK_UP || 
+        } else if (inputData.keyCode === ROT.VK_UP ||
                    inputData.keyCode === ROT.VK_K ||
                    inputData.keyCode === ROT.VK_NUMPAD8 ||
                    inputData.keyCode === ROT.VK_W) {
             this.moveCursor(0, -1);
-        } else if (inputData.keyCode === ROT.VK_DOWN || 
+        } else if (inputData.keyCode === ROT.VK_DOWN ||
                    inputData.keyCode === ROT.VK_J ||
                    inputData.keyCode === ROT.VK_NUMPAD2 ||
                    inputData.keyCode === ROT.VK_S) {
@@ -572,7 +563,7 @@ Game.Screen.lookScreen = new Game.Screen.TargetBasedScreen({
         var map = this._player.getMap();
         // If the tile is explored, we can give a better capton
         if (map.isExplored(x, y)) {
-            // If the tile isn't explored, we have to check if we can actually 
+            // If the tile isn't explored, we have to check if we can actually
             // see it before testing if there's an entity or item.
             if (this._visibleCells[x + ',' + y]) {
                 var items = map.getItemsAt(x, y);
@@ -612,7 +603,7 @@ Game.Screen.lookScreen = new Game.Screen.TargetBasedScreen({
         var map = this._player.getMap();
         // If the tile is explored, we can give a better capton
         if (map.isExplored(x, y)) {
-            // If the tile isn't explored, we have to check if we can actually 
+            // If the tile isn't explored, we have to check if we can actually
             // see it before testing if there's an entity or item.
             if (this._visibleCells[x + ',' + y]) {
                 // Check if there's an entity
@@ -643,7 +634,7 @@ Game.Screen.lookScreen = new Game.Screen.TargetBasedScreen({
 Game.Screen.helpScreen = {
     setup: function() {
         // Must be called before rendering.
-        this._ignoredOne = false; 
+        this._ignoredOne = false;
     },
     render: function(display) {
         var text = 'Help';
@@ -651,8 +642,6 @@ Game.Screen.helpScreen = {
         var y = 0;
         display.drawText((Game.getScreenWidth() + 20) / 2 - text.length / 2, y++, text);
         display.drawText((Game.getScreenWidth() + 20) / 2 - border.length / 2, y++, border);
-        display.drawText(1, y++, 'Retrieve the %c{#f0f}Jewel of Zot%c{#ccc} from the %c{red}lobsterfolks\'%c{#ccc} %c{#6c9}Sunken Citadel!%c{#ccc}');
-        y ++;
         display.drawText(1, y++, 'Controls:');
         display.drawText(1, y++, 'Arrow keys, hjkl, or wasd to move.');
         display.drawText(1, y++, '[Space] or [.] to wait.');
@@ -688,7 +677,7 @@ Game.Screen.blessingHelpScreen = {
     setup: function(entity) {
         // Must be called before rendering.
         this._entity = entity;
-        this._ignoredOne = false; 
+        this._ignoredOne = false;
     },
     render: function(display) {
         var text = 'Available Blessings';
@@ -723,7 +712,7 @@ Game.Screen.enemyHelpScreen = {
     setup: function(entity) {
         // Must be called before rendering.
         this._entity = entity;
-        this._ignoredOne = false; 
+        this._ignoredOne = false;
     },
     render: function(display) {
         var text = 'Nearby Enemies';
