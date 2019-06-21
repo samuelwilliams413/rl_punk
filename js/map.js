@@ -5,6 +5,7 @@ Game.Map = function(tilesArray) {
     this._fov = [];
     this.setupFov();
     this._entities = {};
+    this._items = {};
     this._scheduler = new ROT.Scheduler.Speed();
     this._engine = new ROT.Engine(this._scheduler);
     this._explored = new Array2d(this._width, this._height).fill(false);
@@ -92,6 +93,13 @@ Game.Map.prototype.getEntities = function() {
 Game.Map.prototype.getEntityAt = function(x, y){
     // Get the entity based on position key
     return this._entities[x + ',' + y];
+};
+Game.Map.prototype.getItems = function() {
+    return this._items;
+};
+Game.Map.prototype.getItemAt = function(x, y){
+    // Get the entity based on position key
+    return this._items[x + ',' + y];
 };
 Game.Map.prototype.getEntitiesWithinRadius = function(centerX, centerY, radius) {
     results = [];
@@ -190,6 +198,7 @@ Game.Map.prototype.addItemAtRandomPosition = function(item) {
 };
 
 Game.Map.prototype.addItem = function(item) {
+    item.setMap(this);
     this.updateItemPosition(item);
 };
 
@@ -203,15 +212,17 @@ Game.Map.prototype.removeItem = function(item) {
 
 Game.Map.prototype.updateItemPosition = function(
     item, oldX, oldY) {
-    // Delete the old key if it is the same entity
+    // Delete the old key if it is the same item
+    
+    
     // and we have old positions.
     if (typeof oldX === 'number') {
         var oldKey = oldX + ',' + oldY;
-        if (this._items[oldKey] == entity) {
+        if (this._items[oldKey] == item) {
             delete this._items[oldKey];
         }
     }
-    // Make sure the entity's position is within bounds
+    // Make sure the item's position is within bounds
     if (item.getX() < 0 || item.getX() >= this._width ||
         item.getY() < 0 || item.getY() >= this._height) {
         throw new Error("Item's position is out of bounds.");
@@ -219,7 +230,11 @@ Game.Map.prototype.updateItemPosition = function(
     var key = item.getX() + ',' + item.getY();
 
     // Add the item to the table of items
-    this._item[key] = item;
+    console.log(item)
+    console.log(key)
+    console.log(this._items)
+    this._items[key] = item;
+    
 };
 
 Game.Map.prototype.updateEntityPosition = function(

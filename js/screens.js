@@ -227,6 +227,10 @@ Game.Screen.playScreen = {
                             glyph = map.getEntityAt(x, y);
                             character = glyph.getChar();
                         }
+                        if (map.getItemAt(x, y)) {
+                            glyph = map.getItemAt(x, y);
+                            character = glyph.getChar();
+                        }
                         // Update the foreground color in case our glyph changed
                         foreground = glyph.getForeground();
                     } else if (this._player.hasAbility('telepathy')) {

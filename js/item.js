@@ -1,6 +1,11 @@
 Game.Item = function(properties) {
     properties = properties || {};
-    Game.Glyph.call(this, properties);
+    // Call the dynamic glyph's construtor with our set of properties
+    Game.DynamicGlyph.call(this, properties);
+    // Instantiate any properties from the passed object
+    this._x = properties['x'] || 0;
+    this._y = properties['y'] || 0;
+    this._map = null;
     this._equipment = properties['equipment'] || false;
     this._breakable = properties['breakable'] || false;
     this._blocksLight = properties['blocksLight'] || false;
@@ -12,7 +17,24 @@ Game.Item = function(properties) {
 
     this._action = properties['action'] || undefined;
 };
-Game.Item.extend(Game.Glyph);
+// Make entities inherit all the functionality from dynamic glyphs
+Game.Item.extend(Game.DynamicGlyph);
+
+Game.Item.prototype.setX = function(x) {
+    this._x = x;
+};
+Game.Item.prototype.setY = function(y) {
+    this._y = y;
+};
+Game.Item.prototype.getX = function() {
+    return this._x;
+};
+Game.Item.prototype.getY   = function() {
+    return this._y;
+};
+Game.Item.prototype.setMap = function(map) {
+    this._map = map;
+};
 
 // Standard getters
 Game.Item.prototype.isEquipment = function() {

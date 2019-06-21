@@ -8,11 +8,12 @@ Game.Map.Citadel = function(tiles, player, level) {
         // Add a random entity
         this.addEntityAtRandomPosition(entity);
     }
-    //for (var i = 0; i < 15; i++) {
-    //    var entity = Game.ItemRepository.createRandom();
-        // Add a random entity
-    //    this.addItemAtRandomPosition(item);
-    //}
+    console.log(entity)
+    for (var i = 0; i < 15; i++) {
+        var item = Game.ItemRepository.createRandom();
+        // Add a random item
+        //this.addItemAtRandomPosition(item);
+    }
     if (level < 7) {
         if (level % 2 !== 0) {
             // Odd levels
