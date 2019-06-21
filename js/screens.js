@@ -335,6 +335,10 @@ Game.Screen.playScreen = {
                 this._player.invokeBlessing(8);
             } else if (inputData.keyCode === ROT.VK_9) {
                 this._player.invokeBlessing(9);
+            } else if (inputData.keyCode === ROT.VK_I) {
+                Game.Screen.inventoryScreen.setup(this._player);
+                this.setSubScreen(Game.Screen.inventoryScreen);
+                return;
             } else if (inputData.keyCode === ROT.VK_B) {
                 Game.Screen.blessingHelpScreen.setup(this._player);
                 this.setSubScreen(Game.Screen.blessingHelpScreen);
@@ -692,6 +696,36 @@ Game.Screen.blessingHelpScreen = {
             display.drawText(1, y++, descriptionColors + (1 + i) + '. ' + blessingColors + blessing.name)
             display.drawText(5, y++, descriptionColors + blessing.description)
         }
+        y = display.getOptions().height - 2;
+        text = '[ Press any key to continue ]';
+        display.drawText((Game.getScreenWidth() + 20) / 2 - text.length / 2, y++, '%c{yellow}' + text);
+    },
+    handleInput: function(inputType, inputData) {
+        if (this._ignoredOne) {
+            Game.Screen.playScreen.setSubScreen(null);
+        } else {
+            this._ignoredOne = true;
+        }
+    }
+};
+
+// Define our inventory screen
+Game.Screen.inventoryScreen = {
+    setup: function(entity) {
+        // Must be called before rendering.
+        this._entity = entity;
+        this._ignoredOne = false;
+    },
+    render: function(display) {
+        var text = 'Inventory';
+        var border = '-------------------';
+        var y = 0;
+        var blessingColors = '%c{yellow}';
+        var descriptionColors = '%c{white}';
+        var blessings = this._entity.getBlessings();
+        display.drawText((Game.getScreenWidth() + 20) / 2 - text.length / 2, y++, text);
+        display.drawText((Game.getScreenWidth() + 20) / 2 - border.length / 2, y++, border);
+        y += 1;
         y = display.getOptions().height - 2;
         text = '[ Press any key to continue ]';
         display.drawText((Game.getScreenWidth() + 20) / 2 - text.length / 2, y++, '%c{yellow}' + text);

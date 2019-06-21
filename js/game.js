@@ -21,7 +21,7 @@ var Game =  {
                 // screen if there is one
                 if (game._currentScreen !== null) {
                     // prevent events from scrolling screen
-                    if (event === 'keydown' && 
+                    if (event === 'keydown' &&
                         (e.keyCode === ROT.VK_SPACE ||
                          e.keyCode === ROT.VK_DOWN ||
                          e.keyCode === ROT.VK_UP)
@@ -92,6 +92,9 @@ var Game =  {
         });
         document.querySelector('.bq').addEventListener('tap', function(e) {
             game._currentScreen.handleInput('keypress', {charCode: 63});
+        });
+        document.querySelector('.bi').addEventListener('tap', function(e) {
+            game._currentScreen.handleInput('keydown', {keyCode: ROT.VK_I});
         });
         document.querySelector('.bb').addEventListener('tap', function(e) {
             game._currentScreen.handleInput('keydown', {keyCode: ROT.VK_B});
