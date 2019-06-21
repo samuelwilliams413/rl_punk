@@ -99,6 +99,9 @@ var Game =  {
         document.querySelector('.be').addEventListener('tap', function(e) {
             game._currentScreen.handleInput('keydown', {keyCode: ROT.VK_E});
         });
+        document.querySelector('.bi').addEventListener('tap', function(e) {
+            game._currentScreen.handleInput('keydown', {keyCode: ROT.VK_I});
+        });
     },
     initUI: function() {
         var hammertime = new Hammer.Manager(document.querySelector('#game canvas'), {domEvents: true, preventDefault: true});
