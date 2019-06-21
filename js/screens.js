@@ -647,8 +647,9 @@ Game.Screen.helpScreen = {
         display.drawText(1, y++, 'Controls:');
         display.drawText(1, y++, 'Arrow keys, hjkl, or wasd to move.');
         display.drawText(1, y++, '[Space] or [.] to wait.');
-        display.drawText(1, y++, '[1 - 9] to invoke your god\'s bionicalss');
+        display.drawText(1, y++, '[1 - 9] to invoke your god\'s bionicals');
         display.drawText(1, y++, '[;] to look around you');
+        display.drawText(1, y++, '[i] to show inventory');
         display.drawText(1, y++, '[b] to show descriptions of bionicals');
         display.drawText(1, y++, '[e] to show descriptions of enemies');
         display.drawText(1, y++, '[?] to show this help screen');
