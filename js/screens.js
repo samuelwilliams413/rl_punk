@@ -410,8 +410,6 @@ Game.Screen.winScreen = {
         display.drawText(1, y++, messageColor + "You grab the %c{f0f}Jewel of Zot%c{#ccc} and escape to the surface.")
         y++;
         display.drawText(1, y++, messageColor + "Congratulations!")
-        y++;
-        display.drawText(1, y++, messageColor + "The citizens of Port Yendor can rest easy once again.")
         y = display.getOptions().height - 2;
         text = '[ Press any key to play again ]';
         display.drawText((Game.getScreenWidth() + 20) / 2 - text.length / 2, y++, '%c{yellow}' +text);
