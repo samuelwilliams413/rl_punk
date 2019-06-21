@@ -71,7 +71,7 @@ Game.Screen.playScreen = {
         // Start the map's engine
         map.getEngine().start();
         if (level !== 1) {
-            Game.sendMessage(this._player, "Levi heals your wounds and offers you new blessings.")
+            Game.sendMessage(this._player, "Levi heals your wounds and offers you new Bionicals.")
         }
     },
     render: function(display) {
@@ -136,13 +136,13 @@ Game.Screen.playScreen = {
         var hpLine = statColors + 'HP: ' +
             healthColors + Array(player.getHp() + 1).join('+') +
             grayColors + Array(player.getMaxHp() - player.getHp() + 1).join('-');
-        var favorLine = statColors + 'Favor: ' + favorColors + Array(player.getFavor() + 1).join('* ');
+        var favorLine = statColors + 'Power: ' + favorColors + Array(player.getFavor() + 1).join('* ');
         var attackColor = player.getBuffTotal('attack') > 0 ? '%c{#0cf}' : '';
         attackColor += player.getBuffTotal('attack') < 0 ? '%c{#f00}' : '';
         var attackLine = statColors + 'Attack: ' + attackColor + player.getAttackValue();
 
         s++;
-        var blessingsHeader = headColors + '[B]lessings';
+        var blessingsHeader = headColors + '[B]ionicals';
         var enemyHeader = headColors + '[E]nemies';
         var s = 0;
         drawStatus(s++, locationLine);
@@ -645,9 +645,9 @@ Game.Screen.helpScreen = {
         display.drawText(1, y++, 'Controls:');
         display.drawText(1, y++, 'Arrow keys, hjkl, or wasd to move.');
         display.drawText(1, y++, '[Space] or [.] to wait.');
-        display.drawText(1, y++, '[1 - 9] to invoke your god\'s blessings');
+        display.drawText(1, y++, '[1 - 9] to invoke your god\'s bionicalss');
         display.drawText(1, y++, '[;] to look around you');
-        display.drawText(1, y++, '[b] to show descriptions of blessings');
+        display.drawText(1, y++, '[b] to show descriptions of bionicals');
         display.drawText(1, y++, '[e] to show descriptions of enemies');
         display.drawText(1, y++, '[?] to show this help screen');
         y ++;
@@ -655,10 +655,10 @@ Game.Screen.helpScreen = {
         display.drawText(1, y++, '1. Find the upstairs (%c{6c9}<%c{#ccc}) on each floor.');
         display.drawText(1, y++, '2. You don\'t need to kill every enemy.');
         display.drawText(1, y++, '3. Find the %c{#f0f}Jewel of Zot%c{#ccc} (%c{#f0f}*%c{#ccc}) on Level 7 to win.');
-        display.drawText(1, y++, '4. Each Blessing costs 1 favor to invoke.');
-        display.drawText(1, y++, '5. Blessings are powerful, but you can only use 3 per level. Choose wisely.');
-        display.drawText(1, y++, '6. Levi favors those who progress. Health and favor are restored each Level.');
-        display.drawText(1, y++, '7. New blessings become available each level.');
+        display.drawText(1, y++, '4. Each Bionicals costs 1 power to invoke.');
+        display.drawText(1, y++, '5. Bionicals are powerful, but you can only use 3 per level. Choose wisely.');
+        display.drawText(1, y++, '6. Levi favors those who progress. Health and power are restored each Level.');
+        display.drawText(1, y++, '7. New Bionicals become available each level.');
         y = display.getOptions().height - 2;
         text = '[ Press any key to continue ]';
         display.drawText((Game.getScreenWidth() + 20) / 2 - text.length / 2, y++, '%c{yellow}' + text);
@@ -680,7 +680,7 @@ Game.Screen.blessingHelpScreen = {
         this._ignoredOne = false;
     },
     render: function(display) {
-        var text = 'Available Blessings';
+        var text = 'Available Bionicals';
         var border = '-------------------';
         var y = 0;
         var blessingColors = '%c{yellow}';
