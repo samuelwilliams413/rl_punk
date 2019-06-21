@@ -15,17 +15,17 @@ Game.Item = function(properties) {
 Game.Item.extend(Game.Glyph);
 
 // Standard getters
-Game.Tile.prototype.isEquipment = function() {
+Game.Item.prototype.isEquipment = function() {
     return this._equipment;
 };
-Game.Tile.prototype.isBreakable = function() {
+Game.Item.prototype.isBreakable = function() {
     return this._breakable;
 };
-Game.Tile.prototype.isBlockingLight = function() {
+Game.Item.prototype.isBlockingLight = function() {
     return this._blocksLight;
 };
 
-Game.Tile.prototype.getDescription = function() {
+Game.Item.prototype.getDescription = function() {
     return this._description;
 };
 Game.Item.prototype.getValue = function() {
@@ -39,17 +39,6 @@ Game.Item.prototype.getDefence = function() {
 };
 
 
-Game.Tile.prototype.getAction = function() {
+Game.Item.prototype.getAction = function() {
     return this._action;
 };
-
-Game.Item.nullItem = new Game.Item({description: '(unknown)'});
-
-
-Game.Tile.soycafItem = new Game.Item({
-    character: 'c',
-    foreground: 'yellow',
-    description: 'A cup of soycaf (tm)',
-    defence: true,
-    value: 1
-});

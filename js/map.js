@@ -90,7 +90,7 @@ Game.Map.prototype.getEntities = function() {
     return this._entities;
 };
 Game.Map.prototype.getEntityAt = function(x, y){
-    // Get the entity based on position key 
+    // Get the entity based on position key
     return this._entities[x + ',' + y];
 };
 Game.Map.prototype.getEntitiesWithinRadius = function(centerX, centerY, radius) {
@@ -103,7 +103,7 @@ Game.Map.prototype.getEntitiesWithinRadius = function(centerX, centerY, radius) 
     // Iterate through our entities, adding any which are within the bounds
     for (var key in this._entities) {
         var entity = this._entities[key];
-        if (entity.getX() >= leftX && entity.getX() <= rightX && 
+        if (entity.getX() >= leftX && entity.getX() <= rightX &&
             entity.getY() >= topY && entity.getY() <= bottomY) {
             results.push(entity);
         }
@@ -159,7 +159,7 @@ Game.Map.prototype.addEntity = function(entity) {
     // them to the scheduler
     if (entity.hasMixin('Actor')) {
        this._scheduler.add(entity, true);
-    } 
+    }
     // If the entity is the player, set the player.
     if (entity.hasMixin(Game.EntityMixins.PlayerActor)) {
         this._player = entity;
@@ -182,6 +182,45 @@ Game.Map.prototype.removeEntity = function(entity) {
     }
 };
 
+Game.Map.prototype.addItemAtRandomPosition = function(item) {
+    var position = this.getRandomFloorPosition();
+    item.setX(position.x);
+    item.setY(position.y);
+    this.addItem(item);
+};
+
+Game.Map.prototype.addItem = function(item) {
+    this.updateItemPosition(item);
+};
+
+Game.Map.prototype.removeItem = function(item) {
+    // Remove the item from the map
+    var key = item.getX() + ',' + item.getY();
+    if (this._items[key] == item) {
+        delete this._items[key];
+    }
+};
+
+Game.Map.prototype.updateItemPosition = function(
+    item, oldX, oldY) {
+    // Delete the old key if it is the same entity
+    // and we have old positions.
+    if (typeof oldX === 'number') {
+        var oldKey = oldX + ',' + oldY;
+        if (this._items[oldKey] == entity) {
+            delete this._items[oldKey];
+        }
+    }
+    // Make sure the entity's position is within bounds
+    if (item.getX() < 0 || item.getX() >= this._width ||
+        item.getY() < 0 || item.getY() >= this._height) {
+        throw new Error("Item's position is out of bounds.");
+    }
+    var key = item.getX() + ',' + item.getY();
+
+    // Add the item to the table of items
+    this._item[key] = item;
+};
 
 Game.Map.prototype.updateEntityPosition = function(
     entity, oldX, oldY) {
